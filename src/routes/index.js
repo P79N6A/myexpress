@@ -3,9 +3,12 @@ var router = express.Router();
 
 var db = require('../config/config.db');
 var IndexController = require('../controllers/index/index');
+var NavController = require('../controllers/nav/nav');
 
 /* GET home page. */
 router.get('/',IndexController.init);
+router.get('/navs',NavController.init);
+// router.post('/api/addnav',NavController.add)
 
 // router.get('/', db.test);
 // 拦截器

@@ -22,7 +22,7 @@ function _connectDB(callback) {
     pwd = settings.pwd
   let json = { "user": user, "pwd": pwd }
   _connectDB(function(err, db) {
-    let usersCollection = db.collection('users')
+    let usersCollection = db.collection('users');
     usersCollection.find({ "user": user }).toArray(function(err, result) {
       if (err) {
         console.log('查询管理员失败')
@@ -30,6 +30,7 @@ function _connectDB(callback) {
         return
       }
       if (result.length !== 0) {
+        console.log('管理员信息查询成功')
         db.close()
         return
         // usersCollection.deleteMany({ "user": user })
