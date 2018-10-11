@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const router = require('./routes/router');
-
+require('./config/config');
 
 var app = express();
 
@@ -19,6 +19,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 router(app);
+//静态资源代理路径配置
+let staticExpires = {
+    maxAge: '31536000'
+};
+app.use('/express/static', express.static(path.join(__dirname, 'public/static'), staticExpires));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

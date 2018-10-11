@@ -1,2 +1,8 @@
+  <script src=""></script>
+  <% if(locals.javascripts&&locals.javascripts.length>0){  %>
+    <% locals.javascripts.forEach(function(jscript){ %>
+      <script src="<%= global.config.APP_HOST %><%= global.config.APP_STATIC %>/scripts/<%= jscript %>.js"></script>      
+    <% }) %>
+  <% } %>
   </body>
   </html>

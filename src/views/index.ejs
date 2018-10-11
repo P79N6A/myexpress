@@ -1,4 +1,12 @@
-<%- include("./common/header-nav.ejs") %>
+<%- include("./common/header-nav.ejs",{
+    styles:[
+        "index"
+    ]
+}) %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-<%- include("./common/footer.ejs") %>
+<%- include("./common/footer.ejs",{
+    javascripts:[
+        "index"
+    ]
+}) %>

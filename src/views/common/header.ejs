@@ -2,5 +2,10 @@
 <html>
   <head>
     <title><%= title %></title>
+    <% if(locals.styles && locals.styles.length>0){ %>
+      <% locals.styles.forEach(function(stl){ %>
+        <link rel="stylesheet" href="<%= global.config.APP_HOST %><%= global.config.APP_STATIC %>/css/<%= stl %>.css">  
+      <% }) %>  
+    <% } %>
   </head>
   <body>

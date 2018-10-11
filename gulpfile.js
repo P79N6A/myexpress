@@ -48,7 +48,7 @@ var paths = {
     app: path.resolve(__dirname, './src/public/assets/app'),
     components: path.resolve(__dirname, './src/public/assets/components'),
     lib: path.resolve(__dirname, './src/public/assets/lib'),
-    sass: path.resolve(__dirname, './src/public/assets/scss'),
+    sass: path.resolve(__dirname, './src/public/assets/sass'),
     img: path.resolve(__dirname, './src/public/assets/img'),
     fonts: path.resolve(__dirname, './src/public/assets/fonts'),
     nm: path.resolve(__dirname, './src/node_modules'),
