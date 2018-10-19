@@ -13,7 +13,7 @@ mongoexport -h 127.0.0.1 -d mynote<数据库名> -c users<表名> -o D:\Database
 导入数据：
 mongoimport --db mynote<数据库名> --collection users<表名> --file d:/Database/temp/mycolle.json <导入文件地址>
 
-
+访问地址：localhost:3000
 #启动：
 运行MongoDB bin文件夹下的DOS窗口执行以下命令：
 dos1: mongod --dbpath D:\software\MongoDB\data\db
