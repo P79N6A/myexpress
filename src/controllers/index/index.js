@@ -3,7 +3,7 @@ const NavModel = require('../../models/nav/nav');
 const IndexController = {
     init:function(req,res){
         NavModel.init(req,(result)=>{
-            res.render('index', result);
+            res.render('index', result.data);
         },(result)=>{
             console.log(result)
             console.log("请求出错啦");
