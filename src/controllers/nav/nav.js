@@ -1,7 +1,12 @@
 const NavModel = require('../../models/nav/nav');
 const NavController = {
     init(req,res){
-        res.render('navadd', '');        
+        NavModel.init(req,(result)=>{//初始化首页nav数据
+            res.render('navadd', result);  
+        },(result)=>{
+            console.log(result)
+            console.log("请求出错啦");
+        })      
     },
     addMenu(req,res){
         NavModel.addMenu(req,(result)=>{

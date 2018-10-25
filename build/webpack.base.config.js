@@ -2,7 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 module.exports = {
     entry: {
-        'index': path.resolve(__dirname,'../src/public/assets/app/index'),
+        'index': path.resolve(__dirname,'../src/public/assets/app/index/index'),
+        'navadd':path.resolve(__dirname,'../src/public/assets/app/navadd/navadd'),
         'common':path.resolve(__dirname,'../src/public/assets/app/common/common')
     },
     output: {

@@ -28,17 +28,15 @@ const NavModels = {
         })
     },
     addMenu(req,success,fail){
-        console.log(req.body)
+        var postdata = req.body;
         var api = {
             method : 'POST',
             url:'menu_list',
+            title:'添加菜单',
             name:'add_menu',
-            data:{
-                
-            }
+            data:postdata
         }
-        return;
-        monAPI.addnav(req, (result)=>{
+        monAPI.add(api, (result)=>{
             // API.fetchAPI(api,(result)=>{
             if(success && typeof success ==='function'){
                 console.log('add success data!')

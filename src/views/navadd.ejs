@@ -1,40 +1,65 @@
 <%- include("./common/header.ejs",{
-    title:'首页',
+    title:'添加-菜单',
     styles:[
         "navadd"
     ]
 }) %>
 <div class="navs">
+    <% for(var n=0,len=result.length; n<len; n++){ %>
+        <% let item = result[n]; %>
+        <li><%= item.name %></li>
+    <% } %>
+</div>
+<div class="pop-main nav-pop">
+    <form class="pop-body form_nav">
+        <h1 class="pop-title">填写你的梦想菜单</h1>
         <div class="form_group">
             <div class="form_label">
-                歌名
+                菜单名称
             </div>
             <div class="form_ipt">
-                <input type="text"/>
+                <input type="text" name="name"/>
             </div>
         </div>
         <div class="form_group">
             <div class="form_label">
-                歌手
+                ID
             </div>
             <div class="form_ipt">
-                <input type="text"/>
+                <input type="text" name="id"/>
             </div>
         </div>
         <div class="form_group">
             <div class="form_label">
-                附件
+                父级ID
             </div>
             <div class="form_ipt">
-                <input type="text"/>
+                <input type="text" name="pid"/>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="form_label">
+                排序
+            </div>
+            <div class="form_ipt">
+                <input type="text" name="sort"/>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="form_label">
+                备注
+            </div>
+            <div class="form_ipt">
+                <input type="text" name="remark"/>
             </div>
         </div>
         <div class="form_group form_button">
-            <div>添加</div>
+            <div class='btn-add'>添加</div>
         </div>
+    </form>
 </div>
 <%- include("./common/footer.ejs",{
     javascripts:[
-        ""
+        "navadd"
     ]
 }) %>

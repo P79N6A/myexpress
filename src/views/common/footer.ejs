@@ -1,4 +1,4 @@
-  <script src=""></script>
+  <script src="<%= global.config.APP_HOST %><%= global.config.APP_STATIC %>/lib/jquery/jquery.min.js"></script>
   <% if(locals.javascripts&&locals.javascripts.length>0){  %>
     <% locals.javascripts.forEach(function(jscript){ %>
       <script src="<%= global.config.APP_HOST %><%= global.config.APP_STATIC %>/scripts/<%= jscript %>.js"></script>      
