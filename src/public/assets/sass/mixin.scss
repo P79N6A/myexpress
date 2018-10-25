@@ -1,0 +1,211 @@
+//////////////////////////////////////////////////////////////////////
+// 工具库
+//////////////////////////////////////////////////////////////////////
+//
+// 清除内部浮动
+//
+@mixin clearfix {
+    &:after {
+        visibility: hidden;
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+    }
+}
+
+//
+// 内容垂直居中
+// 
+@mixin vertical-center {
+    &:before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        /* adjust for white space between pseudo element and next sibling */
+        margin-right: -.25em;
+        /* stretch line height */
+        height: 100%;
+    }
+
+    >*:first-child {
+        display: inline-block;
+        vertical-align: middle;
+        white-space: normal;
+    }
+}
+
+//宽高百分比
+@function heightPer($width, $height) {
+    @return ($height/$width)*100%;
+}
+//宽、高、行高、居中
+@mixin wh($width, $height, $lheight:false, $center:false){
+    width:$width + px;
+    height:$height + px;
+    @if($lheight) {
+        line-height: $lheight + px;
+    }
+    @if($center){
+        text-align: center;
+    }
+}
+//同时设置相同宽高并设置成圆形
+@mixin equalWH($num, $circle:true, $center:false) {
+    width: $num + px;
+    height: $num + px;
+
+    @if($circle) {
+        border-radius: 50%;
+    }
+
+    @if($center) {
+        line-height: $num + px;
+        text-align: center;
+    }
+}
+
+//设置未知宽高元素居中
+@mixin middle($x, $y) {
+    position: absolute;
+
+    @if($x and $y) {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @else {
+        @if($x) {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @if($y) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+//设置已知宽高元素居中
+@mixin middleWH($width, $height) {
+    position: absolute;
+
+    @if($width) {
+        left: 50%;
+        margin-left: - $width / 2 + px;
+    }
+
+    @if($height) {
+        top: 50%;
+        margin-top: - $height / 2 + px;
+    }
+}
+
+//透明蒙层背景色
+@mixin bgBlack($opacity) {
+    background-color: rgba(0, 0, 0, $opacity);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+}
+
+//
+// 内容文本对齐
+//
+@mixin text-right {
+    text-align: right;
+}
+
+@mixin text-center {
+    text-align: center;
+}
+
+@mixin text-left {
+    text-align: left;
+}
+
+//浮动
+@mixin float-left {
+    float: left;
+}
+
+@mixin float-right {
+    float: right;
+}
+
+@mixin float-none {
+    float: none;
+}
+
+//定位
+@mixin position-relative {
+    position: relative;
+}
+
+@mixin position-absolute {
+    position: absolute;
+}
+
+@mixin position-fixed {
+    position: fixed;
+}
+
+@mixin position-static {
+    position: static;
+}
+
+//box-sizing
+@mixin box-sizing {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+// 单行文本省略号截断
+@mixin ellipsis-single {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+//手势鼠标
+@mixin cursor-pointer {
+    cursor: pointer;
+}
+
+// 播放图标扩散特效
+@mixin animation-pulse {
+    animation: animation-pulse 2s infinite;
+
+    @-webkit-keyframes animation-pulse {
+        0% {
+            -webkit-box-shadow: 0 0 0 0 rgba(229, 0, 119, 0.8);
+        }
+
+        70% {
+            -webkit-box-shadow: 0 0 0 30px rgba(229, 0, 119, 0);
+        }
+
+        100% {
+            -webkit-box-shadow: 0 0 0 0 rgba(229, 0, 119, 0);
+        }
+    }
+
+    @keyframes animation-pulse {
+        0% {
+            -moz-box-shadow: 0 0 0 0 rgba(229, 0, 119, 0.8);
+            box-shadow: 0 0 0 0 rgba(229, 0, 119, 0.4);
+        }
+
+        70% {
+            -moz-box-shadow: 0 0 0 10px rgba(229, 0, 119, 0);
+            box-shadow: 0 0 0 30px rgba(229, 0, 119, 0);
+        }
+
+        100% {
+            -moz-box-shadow: 0 0 0 0 rgba(229, 0, 119, 0);
+            box-shadow: 0 0 0 0 rgba(229, 0, 119, 0);
+        }
+    }
+}

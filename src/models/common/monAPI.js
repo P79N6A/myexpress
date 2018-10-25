@@ -5,12 +5,14 @@ exports.getlist = function (api, success, fail) {
 		if (err) {
 			fail({
 				"code": 404,
+				"title": api.title ||'暂无标题',
 				"message": api.name+ " 查询失败",
 				"result": []
 			})
 		}else{
             success({
-                "code": 200,
+				"code": 200,
+				"title": api.title ||'暂无标题',
                 "message":  api.name+ " 查询成功",
                 "result": result,
                 "total": result.length

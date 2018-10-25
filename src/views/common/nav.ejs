@@ -1,3 +1,6 @@
 <ul>
-    <li>this is my list123</li>
+    <% for(var n=0,len=result.length; n<len; n++){ %>
+        <% let item = result[n]; %>
+        <li><%= item.name %></li>
+    <% } %>
 </ul>

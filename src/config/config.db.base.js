@@ -64,25 +64,25 @@ exports.insertOne = function(collectionName, json, callback) {
 }
 
 // 查找数据
-exports.find = function(collectionName, queryJson, callback) {
-  _connectDB(function(err, db) {
-    let json = queryJson.query || {},
-      limit = Number(queryJson.limit) || 0,
-      count = Number(queryJson.page),
-      sort = queryJson.sort || {}
+// exports.find = function(collectionName, queryJson, callback) {
+//   _connectDB(function(err, db) {
+//     let json = queryJson.query || {},
+//       limit = Number(queryJson.limit) || 0,
+//       count = Number(queryJson.page),
+//       sort = queryJson.sort || {}
 
-    let cursor = db.collection(collectionName).find(json).limit(limit).skip(count*limit).sort(sort)
-    cursor.toArray(function(err, results) {
-      if (err) {
-        callback(err, null)
-        db.close()
-        return
-      }
-      callback(err, results)
-      db.close()
-    })
-  })
-}
+//     let cursor = db.collection(collectionName).find(json).limit(limit).skip(count*limit).sort(sort)
+//     cursor.toArray(function(err, results) {
+//       if (err) {
+//         callback(err, null)
+//         db.close()
+//         return
+//       }
+//       callback(err, results)
+//       db.close()
+//     })
+//   })
+// }
 exports.find = function(collectionName, queryJson, callback) {
   _connectDB(function(err, db) {
     let json = queryJson.query || {},

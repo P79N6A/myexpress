@@ -6,9 +6,14 @@ var IndexController = require('../controllers/index/index');
 var NavController = require('../controllers/nav/nav');
 
 /* GET home page. */
+//首页
 router.get('/',IndexController.init);
 // router.get('/navs',NavController.init);
-// router.post('/api/addnav',NavController.add)
+//菜单添加页
+router.get('/addnav',NavController.init);
+//添加菜单
+router.route('/api/addNav').post(NavController.addMenu);
+
 
 // router.get('/', db.test);
 // 拦截器

@@ -1,10 +1,13 @@
 const NavModel = require('../../models/nav/nav');
 const NavController = {
     init(req,res){
-        NavModel.init(req,(result)=>{
-            res.render('common/nav', result);
+        res.render('navadd', '');        
+    },
+    addMenu(req,res){
+        NavModel.addMenu(req,(result)=>{
+            res.json(result);
         },(result)=>{
-            console.log("请求出错啦");
+            res.json(result);
         })
         
     }

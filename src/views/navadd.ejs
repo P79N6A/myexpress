@@ -1,10 +1,40 @@
+<%- include("./common/header.ejs",{
+    title:'首页',
+    styles:[
+        "navadd"
+    ]
+}) %>
 <div class="navs">
-        <div class="nav_group">
-            <div class="nav_label">
-                名字
+        <div class="form_group">
+            <div class="form_label">
+                歌名
             </div>
-            <div class="nav_ipt">
+            <div class="form_ipt">
                 <input type="text"/>
             </div>
         </div>
-    </div>
+        <div class="form_group">
+            <div class="form_label">
+                歌手
+            </div>
+            <div class="form_ipt">
+                <input type="text"/>
+            </div>
+        </div>
+        <div class="form_group">
+            <div class="form_label">
+                附件
+            </div>
+            <div class="form_ipt">
+                <input type="text"/>
+            </div>
+        </div>
+        <div class="form_group form_button">
+            <div>添加</div>
+        </div>
+</div>
+<%- include("./common/footer.ejs",{
+    javascripts:[
+        ""
+    ]
+}) %>
