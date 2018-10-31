@@ -2,9 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 module.exports = {
     entry: {
-        'index': path.resolve(__dirname,'../src/public/assets/app/index/index'),
-        'navadd':path.resolve(__dirname,'../src/public/assets/app/navadd/navadd'),
-        'common':path.resolve(__dirname,'../src/public/assets/app/common/common')
+        'common':path.resolve(__dirname,'../src/public/assets/app/common/common'),//公共
+        'index': path.resolve(__dirname,'../src/public/assets/app/index/index'),//首页
+        'navadd':path.resolve(__dirname,'../src/public/assets/app/navadd/navadd'),//菜单
+        'canvas':path.resolve(__dirname,'../src/public/assets/app/static/canvas/canvas'),//静态--1
+        'three':path.resolve(__dirname,'../src/public/assets/app/static/three/three'),//静态--2
     },
     output: {
         publicPath :'/',

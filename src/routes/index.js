@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var db = require('../config/config.db');
+// var db = require('../config/config.db');
 var IndexController = require('../controllers/index/index');
 var NavController = require('../controllers/nav/nav');
 
