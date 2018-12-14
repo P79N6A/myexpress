@@ -14,6 +14,42 @@
     }
 }
 
+@mixin button(
+$url,
+$x1,
+$y1) {
+ -webkit-mask: url($url);
+ mask: url($url);
+ -webkit-mask-size: $x1 $y1;
+ mask-size: $x1 $y1;
+}
+
+//宽、高、行高、居中
+@mixin wh($width, $height, $lheight:false, $center:false){
+    width:$width + px;
+    height:$height + px;
+    @if($lheight) {
+        line-height: $lheight + px;
+    }
+    @if($center){
+        text-align: center;
+    }
+}
+//同时设置相同宽高并设置成圆形
+@mixin equalWH($num, $circle:true, $center:false) {
+    width: $num + px;
+    height: $num + px;
+
+    @if($circle) {
+        border-radius: 50%;
+    }
+
+    @if($center) {
+        line-height: $num + px;
+        text-align: center;
+    }
+}
+
 //
 // 内容垂直居中
 // 
@@ -39,31 +75,6 @@
 //宽高百分比
 @function heightPer($width, $height) {
     @return ($height/$width)*100%;
-}
-//宽、高、行高、居中
-@mixin wh($width, $height, $lheight:false, $center:false){
-    width:$width + px;
-    height:$height + px;
-    @if($lheight) {
-        line-height: $lheight + px;
-    }
-    @if($center){
-        text-align: center;
-    }
-}
-//同时设置相同宽高并设置成圆形
-@mixin equalWH($num, $circle:true, $center:false) {
-    width: $num + px;
-    height: $num + px;
-
-    @if($circle) {
-        border-radius: 50%;
-    }
-
-    @if($center) {
-        line-height: $num + px;
-        text-align: center;
-    }
 }
 
 //设置未知宽高元素居中
@@ -163,7 +174,7 @@
 }
 
 // 单行文本省略号截断
-@mixin ellipsis-single {
+@mixin ellipsis {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

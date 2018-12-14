@@ -4,6 +4,7 @@ var router = express.Router();
 // var db = require('../config/config.db');
 var IndexController = require('../controllers/index/index');
 var NavController = require('../controllers/nav/nav');
+var SrtController = require('../controllers/srt/srt');
 
 /* GET home page. */
 //首页
@@ -13,6 +14,10 @@ router.get('/',IndexController.init);
 router.get('/addnav',NavController.init);
 //添加菜单
 router.route('/api/addNav').post(NavController.addMenu);
+
+// interview json
+router.get('/srt',SrtController.init);
+router.route('/api/addTi',SrtController.addTi);
 
 
 // router.get('/', db.test);

@@ -1,45 +1,60 @@
 @import './mixin';
 
-.pop-main {
+.pop-win {
     display:none;
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     z-index: 100;
     color: #333;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
 
-    .pop-body {
-        @include wh(400, 400);
+    .pop-main {
+        width: 400px;
+        @include middle(1,1);
         padding: 30px;
+        background: #fff;
         border-radius: 4px;
-        background-color: #fff;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-
+        overflow: hidden;
+        box-shadow: 0 0 5px 2px #6b6767;
         .pop-title {
             text-align: center;
             line-height: 30px;
         }
 
-        .form_group {
+        .form-group {
             position: relative;
             padding-left: 100px;
 
         }
-        .form_label {
-            @include wh(100, 38, 38);
+        .form-label {
+            @include wh(90, 38, 38);
             position: absolute;
-            left: 20px;
+            left:0;
+            top:0;
+            height:40px;
+            line-height:40px;
+            text-align: right;
+            @include ellipsis();
+            &.label2{
+                letter-spacing: 25px;
+            }
+            &.label3{
+                letter-spacing: 12px;
+            }
+            &.label4{
+                letter-spacing: 5px;
+            }
+            &:after{
+                content: ':';
+                display: inline-block;
+                letter-spacing: 2px;
+            }
         }
 
-        .form_ipt {
+        .form-ipt {
             padding: 4px 10px;
 
             input[type=text] {
@@ -47,17 +62,28 @@
                 height: 30px;
                 border: 1px solid #a9a9a9;
                 border-radius: 3px;
+                box-sizing: border-box;
+            }
+            textarea{
+                width: 100%;
+                height: 80px;
+                border: 1px solid #a9a9a9;
+                border-radius: 3px;
+                box-sizing: border-box;
+                
             }
         }
 
-        .form_button {
+        .form-button {
             padding: 10px 0;
+            text-align: center;
 
-            .btn-add {
+            .form-btn {
                 @include wh(120, 38, 38, 1);
+                display: inline-block;
                 border: 1px solid #a9a9a9;      
                 border-radius:4px;          
-                margin: 10px auto;
+                margin: 10px;
             }
         }
     }

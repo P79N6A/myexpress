@@ -1,0 +1,252 @@
+@import '../../sass/mixin.scss';
+@import '../../sass/common.scss';
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100');
+
+.btns {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    $color: #000;
+    @include clearfix();
+
+    .addlist {
+        @include wh(100, 50, 50, 1);
+        border: 1px solid #000;
+        background-color: #000;
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        float: left;
+        margin: 20px 0 0 20px;
+        transition: all 0.2s ease-in-out;
+
+        &:before {
+            content: "";
+            background-color: rgba(255, 255, 255, 0.5);
+            height: 100%;
+            width: 3em;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -4.5em;
+            transform: skewX(-45deg) translateX(0);
+            transition: none;
+        }
+
+        &:hover {
+            background-color: $color;
+            color: #fff;
+            // border-bottom: 4px solid darken($color, 10%);
+
+            &:before {
+                transform: skewX(-45deg) translateX(13.5em);
+                transition: all 0.5s ease-in-out;
+            }
+        }
+
+        // &:hover {
+        //     background-color: #fff;
+        //     color: #000;
+        // }
+    }
+
+
+    @keyframes sheen {
+        0% {
+            transform: skewY(-45deg) translateX(0);
+        }
+
+        100% {
+            transform: skewY(-45deg) translateX(12.5em);
+        }
+    }
+    .showmodel{
+        @include clearfix();
+    }
+    .button-container-1,
+    .button-container-2,
+    .button-container-3 {
+        position: relative;
+        width: 100px;
+        height: 50px;
+        float: left;
+        margin: 20px 0 0 20px;
+        overflow: hidden;
+        border: 1px solid #000;
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        transition: 0.5s;
+        letter-spacing: 1px;
+
+        .mas {
+            color: #000;
+            text-align: center;
+            width: 101%;
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            position: absolute;
+            font-size: 20px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        button {
+            width: 101%;
+            height: 100%;
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: 20px;
+            letter-spacing: 1px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+    }
+
+    .button-container-1 {
+        button {
+            @include button("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+            2300%,
+            100%);
+            -webkit-animation: ani2 0.7s steps(22) forwards;
+            animation: ani2 0.7s steps(22) forwards;
+
+            &:hover {
+                -webkit-animation: ani 0.7s steps(22) forwards;
+                animation: ani 0.7s steps(22) forwards;
+            }
+        }
+    }
+
+    .button-container-2 {
+        button {
+            @include button("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+            2300%,
+            100%);
+            // @include button("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png",
+            // 3000%,
+            // 100%);
+            -webkit-animation: ani2 0.7s steps(29) forwards;
+            animation: ani2 0.7s steps(29) forwards;
+
+            &:hover {
+                -webkit-animation: ani 0.7s steps(29) forwards;
+                animation: ani 0.7s steps(29) forwards;
+            }
+        }
+    }
+
+    .button-container-3 {
+        button {
+            @include button("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+            2300%,
+            100%);
+            // @include button("https://github.com/robin-dela/css-mask-animation/blob/master/img/nature-sprite-2.png?raw=true",
+            // 7100%,
+            // 100%);
+            -webkit-animation: ani2 0.7s steps(70) forwards;
+            animation: ani2 0.7s steps(70) forwards;
+
+            &:hover {
+                -webkit-animation: ani 0.7s steps(70) forwards;
+                animation: ani 0.7s steps(70) forwards;
+            }
+        }
+    }
+
+    @-webkit-keyframes ani {
+        from {
+            -webkit-mask-position: 0 0;
+            mask-position: 0 0;
+        }
+
+        to {
+            -webkit-mask-position: 100% 0;
+            mask-position: 100% 0;
+        }
+    }
+
+    @keyframes ani {
+        from {
+            -webkit-mask-position: 0 0;
+            mask-position: 0 0;
+        }
+
+        to {
+            -webkit-mask-position: 100% 0;
+            mask-position: 100% 0;
+        }
+    }
+
+    @-webkit-keyframes ani2 {
+        from {
+            -webkit-mask-position: 100% 0;
+            mask-position: 100% 0;
+        }
+
+        to {
+            -webkit-mask-position: 0 0;
+            mask-position: 0 0;
+        }
+    }
+
+    @keyframes ani2 {
+        from {
+            -webkit-mask-position: 100% 0;
+            mask-position: 100% 0;
+        }
+
+        to {
+            -webkit-mask-position: 0 0;
+            mask-position: 0 0;
+        }
+    }
+
+}
+
+.srt-list {
+    .srt-item {
+        height: 40px;
+    }
+
+    .title {
+        height: 40px;
+        line-height: 40px;
+        // @include elipsis();
+    }
+
+    .info,
+    .minfo {
+        display: none;
+    }
+
+    &.showmine {
+        
+        .minfo {
+            display: block;
+        }
+    }
+
+    &.showstandard {
+        .info {
+            display: block;
+        }
+    }
+
+    &.showall {
+
+        .info,
+        .minfo {
+            display: block;
+        }
+    }
+}
+
+.pop-win {
+    .pop-main {
+        // @include wh(450, 450);
+    }
+}

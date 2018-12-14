@@ -1,0 +1,79 @@
+<%- include('../common/header.ejs',{
+    title:'srt-ti',
+    styles:['srt-ti']
+})%>
+<div class="">
+    <h1>welcome my srt-TI </h1>
+    <div class="btns">
+        <div class="addlist">ADDlist</div>
+        <div class="showmodel">
+            <div class="button-container-1">
+                <span class="mas">MINE</span>
+                <button type="button" data="mine">MINE</button>
+            </div>
+
+            <div class="button-container-2">
+                <span class="mas">STANDARD</span>
+                <button type="button" data="standard">STANDARD</button>
+            </div>
+
+            <div class="button-container-3">
+                <span class="mas">bOthem</span>
+                <button type="button" data="bothem">bOthem</button>
+            </div>
+        </div>
+    </div>
+    <ul class="srt-list">
+        <% for(var d=0,dl=data.length;d < dl;d++){ %>
+        <% var item = data[d]; %>
+        <li class="srt-item">
+            <div class="title">
+                <%= item.title %>
+                <span class="modify">MODIFY</span>
+                <span class="delete">DELETED</span>
+            </div>
+            <% if(item.bzinfo){%>
+                <div class="info">
+                    <%= item.bzinfo %>
+                </div>
+            <% } %>
+            <% if(item.minfo){%>
+                <div class="minfo">
+                    <%= item.minfo %>
+                </div>
+            <% } %>
+        </li>
+        <% } %>
+    </ul>
+    <div class="pop-win" id="srtform">
+        <div class="pop-main">
+            <div class="pop-title">let's GO</div>
+            <div class="data-form">
+                <div class="form-group">
+                    <div class="form-label label2">标题</div>
+                    <div class="form-ipt"><input type="text" name="title" /></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label label4">标准描述</div>
+                    <div class="form-ipt"><textarea name="bzinfo"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label label4">我的答案</div>
+                    <div class="form-ipt"><textarea name="myinfo"></textarea></div>
+                </div>
+                <div class="form-button">
+                    <div class="form-btn btn-cancel" id="">取消</div>
+                    <div class="form-btn btn-save">保存</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<%- include("../common/footer.ejs",{
+    javascripts:[
+        "srt-ti"
+    ],
+    libs:[]
+}) %>

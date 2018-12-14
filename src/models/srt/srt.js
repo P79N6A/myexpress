@@ -1,21 +1,14 @@
-const API= require('../common/API');
-// const API = require('../common/monAPI');
+var jAPI = require('../common/json');
 
-const NavModels = {
+const strModels = {
     init(req,success,fail){
-        var api = {
-            method:'GET',
-            url:'menu_list',
-            //url:'http://t.music.migu.cn/v3/api/common/getColumn',
-            name:'menu_list',
-            title:'首页',
-            mongotype:'getlist',
-            data:{ "limit": 20, "page": 1, "sort":  { "updateTime": -1 } }
-            // data:{
-            //     columnId:'24180975'
-            // }
-        }
-        API.fetchAPI(api,(result)=>{
+        var api ={
+            url: './src/public/assets/app/srt/srt-ti.json',
+            title:'查询',
+            name:'初始化',
+            data:req.body
+        } ;
+        jAPI.pagination(api,(result)=>{
             if(success && typeof success ==='function'){
                 console.log('Get success data!')
                 success(result);
@@ -30,14 +23,12 @@ const NavModels = {
     addMenu(req,success,fail){
         var postdata = req.body;
         var api = {
-            method : 'POST',
-            url:'menu_list',
+            url:'./src/public/assets/app/srt/srt-ti.json',
             title:'添加菜单',
             name:'add_menu',
-            mongotype:'add',
             data:postdata
         }
-        API.fetchAPI(api,(result)=>{
+        jAPI.addJSON(api,(result)=>{
             if(success && typeof success ==='function'){
                 console.log('add success data!')
                 success(result);
@@ -50,4 +41,5 @@ const NavModels = {
         })
     }
 }
-module.exports = NavModels
+
+module.exports = strModels

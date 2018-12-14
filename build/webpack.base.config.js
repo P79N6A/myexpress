@@ -6,7 +6,8 @@ module.exports = {
         'index': path.resolve(__dirname,'../src/public/assets/app/index/index'),//首页
         'navadd':path.resolve(__dirname,'../src/public/assets/app/navadd/navadd'),//菜单
         'canvas':path.resolve(__dirname,'../src/public/assets/app/static/canvas/canvas'),//静态--1
-        'three':path.resolve(__dirname,'../src/public/assets/app/static/three/three'),//静态--2
+        'three':path.resolve(__dirname,'../src/public/assets/app/static/three/three'),//静态-static-2
+        'srt-ti':path.resolve(__dirname,'../src/public/assets/app/srt/srt-ti'),//静态-srt-1
     },
     output: {
         publicPath :'/',
