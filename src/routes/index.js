@@ -17,7 +17,7 @@ router.route('/api/addNav').post(NavController.addMenu);
 
 // interview json
 router.get('/srt',SrtController.init);
-router.route('/api/addTi',SrtController.addTi);
+router.post('/api/addTi',SrtController.addTi);
 
 
 // router.get('/', db.test);

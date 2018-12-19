@@ -63,14 +63,14 @@ define(function () {
                     srtform.style.display = 'none';
                 }else{
                     var app = {
-                        url:'/srt',
+                        url:'/api/addTi',
                         method:'post',
-                        data:{
+                        data:JSON.stringify({
                             id:'5',
                             title:'我的添加',
                             bzinfo:'添加上没',
                             minfo:'再来一次'
-                        }
+                        })
                     }
                     eventHander.XHRequest(app,function(data){
                         console.log(data);

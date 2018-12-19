@@ -21,7 +21,7 @@ const strModels = {
         })
     },
     addMenu(req,success,fail){
-        var postdata = req.body;
+        var postdata = JSON.parse(req.body);
         var api = {
             url:'./src/public/assets/app/srt/srt-ti.json',
             title:'添加菜单',
