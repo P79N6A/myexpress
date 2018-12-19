@@ -37,9 +37,9 @@
                     <%= item.bzinfo %>
                 </div>
             <% } %>
-            <% if(item.minfo){%>
-                <div class="minfo">
-                    <%= item.minfo %>
+            <% if(item.myinfo){%>
+                <div class="myinfo">
+                    <%= item.myinfo %>
                 </div>
             <% } %>
         </li>
@@ -48,8 +48,8 @@
     <div class="pop-win" id="srtform">
         <div class="pop-main">
             <div class="pop-title">let's GO</div>
-            <div class="data-form">
-                <div class="form-group">
+            <form class="data-form">
+                <div class="form-group" name="formdata">
                     <div class="form-label label2">标题</div>
                     <div class="form-ipt"><input type="text" name="title" /></div>
                 </div>
@@ -65,7 +65,7 @@
                     <div class="form-btn btn-cancel" id="">取消</div>
                     <div class="form-btn btn-save">保存</div>
                 </div>
-            </div>
+            </form>
 
         </div>
     </div>

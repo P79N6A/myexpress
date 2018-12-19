@@ -9,7 +9,7 @@ const srtController = {
         })      
     },
     addTi(req,res){
-        srtMondel.addMenu(req,(result)=>{
+        srtMondel.addTi(req,(result)=>{
             res.json(result);
         },(result)=>{
             res.json(result);

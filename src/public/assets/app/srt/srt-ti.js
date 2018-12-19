@@ -59,23 +59,31 @@ define(function () {
                 e = eventHander.getEvent(e);
                 target = eventHander.getTarget(e);
                 var btntype = target.getAttribute('class');
-                if(btntype.includes('btn-cancel')){
-                    srtform.style.display = 'none';
-                }else{
+                var title = document.forms[0]['title'];
+                var bzinfo = document.forms[0]['bzinfo'];
+                var myinfo = document.forms[0]['myinfo'];
+                if(btntype.includes('btn-save')){
+                    var id = new Date().getTime();
                     var app = {
                         url:'/api/addTi',
-                        method:'post',
-                        data:JSON.stringify({
-                            id:'5',
-                            title:'我的添加',
-                            bzinfo:'添加上没',
-                            minfo:'再来一次'
-                        })
+                        method:'POST',
+                        data:{
+                            id:id,
+                            title:title.value,
+                            bzinfo:bzinfo.value,
+                            myinfo:myinfo.value
+                        }
                     }
                     eventHander.XHRequest(app,function(data){
-                        console.log(data);
+                        if(data.rcode != "000000"){
+                            return;
+                        }
                     })
                 }
+                srtform.style.display = 'none';
+                title.value='';
+                bzinfo.value='';
+                myinfo.value='';
             })            
             // list-btn
             eventHander.addHandler(srtlist,'click',function(e){
