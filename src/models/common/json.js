@@ -5,12 +5,6 @@
  */
 const fs = require('fs'); //引用文件系统模块,
 let jAPI = {};
-var jsonurl = '../../public/assets/app/srt/srt-ti.json';
-// var params = {
-//     "id": 5,
-//     "name": "白眉鹰王"
-// }
-
 // 新增
 jAPI = {
     addJSON: (params, success, error) => {
@@ -38,7 +32,8 @@ jAPI = {
                 }
                 var result = {
                     rcode: '000000',
-                    esg: '新增成功'
+                    esg: '新增成功',
+                    data:params.data
                 }
                 success(result);
                 console.log('----------新增成功-------------');
@@ -46,73 +41,81 @@ jAPI = {
         })
     },
     // writeJson(params) //执行一下;
-
-    // 删除数据
-    // deleteJson: (params, success, error) => {
-    //     fs.readFile(jsonurl, function (err, data) {
-    //         if (err) {
-    //             return console.error(err);
-    //         }
-    //         var person = data.toString();
-    //         person = JSON.parse(person);
-    //         //把数据读出来删除
-    //         for (var i = 0; i < person.data.length; i++) {
-    //             if (id == person.data[i].id) {
-    //                 //console.log(person.data[i])
-    //                 person.data.splice(i, 1);
-    //             }
-    //         }
-    //         console.log(person.data);
-    //         person.total = person.data.length;
-    //         var str = JSON.stringify(person);
-    //         //然后再把数据写进去
-    //         fs.writeFile(jsonurl, str, function (err) {
-    //             if (err) {
-    //                 console.error(err);
-    //             }
-    //             console.log("----------删除成功------------");
-    //         })
-    //     })
-    // },
-    // // deleteJson(5);//执行一下
-
-    // /**
-    //  * 修改数据
-    //  * @param {object} params 修改对象内容
-    //  */
-    // changeJson: (params, success, error) => {
-    //     fs.readFile(jsonurl, function (err, data) {
-    //         if (err) {
-    //             console.error(err);
-    //         }
-    //         var person = data.toString();
-    //         person = JSON.parse(person);
-    //         //把数据读出来,然后进行修改
-    //         for (var i = 0; i < person.data.length; i++) {
-    //             if (params.id == person.data[i].id) {
-    //                 console.log('id一样的');
-    //                 for (var key in params) {
-    //                     if (person.data[i][key]) {
-    //                         person.data[i][key] = params[key];
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //         person.total = person.data.length;
-    //         var str = JSON.stringify(person);
-    //         //console.log(str);
-    //         fs.writeFile(jsonurl, str, function (err) {
-    //             if (err) {
-    //                 console.error(err);
-    //             }
-    //             console.log('--------------------修改成功');
-    //             console.log(person.data);
-    //         })
-    //     })
-    // },
+    /**
+     * 修改数据
+     * @param {object} params 修改对象内容
+     */
+    changeJSON: (params, success, error) => {
+        fs.readFile(params.url, function (err, data) {
+            if (err) {
+                console.error(err);
+            }
+            var person = data.toString();
+            person = JSON.parse(person);
+            var mdata= params.data;
+            //把数据读出来,然后进行修改
+            for (var i = 0; i < person.data.length; i++) {
+                if (mdata.id == person.data[i].id) {
+                    console.log('id一样的');
+                    for (var key in mdata) {
+                        if (person.data[i][key]) {
+                            person.data[i][key] = mdata[key];
+                        }
+                    }
+                }
+            }
+            person.total = person.data.length;
+            var str = JSON.stringify(person);
+            //console.log(str);
+            fs.writeFile(params.url, str, function (err) {
+                if (err) {
+                    error(err);
+                }
+                var result = {
+                    rcode: '000000',
+                    esg: '修改成功'
+                }
+                success(result);
+                console.log('--------------------修改成功');
+                console.log(person.data);
+            })
+        })
+    },
     // changeJson(3,params)//执行一下;
-
-
+    // 删除数据
+    deleteJSON: (params, success, error) => {
+        fs.readFile(params.url, function (err, data) {
+            if (err) {
+                return console.error(err);
+            }
+            var person = data.toString();
+            person = JSON.parse(person);
+            var ddata = params.data;
+            //把数据读出来删除
+            for (var i = 0; i < person.data.length; i++) {
+                if (ddata.id == person.data[i].id) {
+                    //console.log(person.data[i])
+                    person.data.splice(i, 1);
+                }
+            }
+            console.log(person.data);
+            person.total = person.data.length;
+            var str = JSON.stringify(person);
+            //然后再把数据写进去
+            fs.writeFile(params.url, str, function (err) {
+                if (err) {
+                    error(err);
+                }
+                var result = {
+                    rcode: '000000',
+                    esg: '删除成功'
+                }
+                success(result);
+                console.log("----------删除成功------------");
+            })
+        })
+    },
+    // // deleteJson(5);//执行一下
     // 分页查询
     pagination: (params, success, error) => {
         //p为页数，比如第一页传0，第二页传1,s为每页多少条数据

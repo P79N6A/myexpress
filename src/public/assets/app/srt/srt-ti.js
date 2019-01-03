@@ -36,61 +36,136 @@ define(function () {
 
         // #region 
         let showmodel = document.querySelector('.showmodel');
-        eventHander.addHandler(showmodel,'click',function(e){
+        eventHander.addHandler(showmodel, 'click', function (e) {
             e = e || window.event;
             var target = e.target || e.srcElement;
             if (target.nodeName.toLowerCase() == 'button') {
-                console.log(target.attribute);
+                srtlist.className = srtlist.classList[0] + ' show' + target.dataset.class;
             }
         });
         // #endregion
-    
+
         // #region 添加、修改、取消
-            let addlist = document.getElementsByClassName('addlist')[0];
-            let srtlist = document.querySelector('.srt-list');
-            let srtform = document.getElementById('srtform');
-            let formbtn = srtform.querySelector('.form-button');
-            // clickADD--pop
-            eventHander.addHandler(addlist,'click',function(){
-                srtform.style.display = 'block';
-            })
-            // form-btn
-            eventHander.addHandler(formbtn,'click',function(e){
-                e = eventHander.getEvent(e);
-                target = eventHander.getTarget(e);
-                var btntype = target.getAttribute('class');
-                var title = document.forms[0]['title'];
-                var bzinfo = document.forms[0]['bzinfo'];
-                var myinfo = document.forms[0]['myinfo'];
-                if(btntype.includes('btn-save')){
-                    var id = new Date().getTime();
-                    var app = {
-                        url:'/api/addTi',
-                        method:'POST',
-                        data:{
-                            id:id,
-                            title:title.value,
-                            bzinfo:bzinfo.value,
-                            myinfo:myinfo.value
-                        }
+        let addlist = document.getElementsByClassName('addlist')[0];
+        let srtlist = document.querySelector('.srt-list');
+        let srtform = document.getElementById('srtform');
+        let formbtn = srtform.querySelector('.form-button');
+        var id = document.forms[0]['id'];
+        var title = document.forms[0]['title'];
+        var bzinfo = document.forms[0]['bzinfo'];
+        var myinfo = document.forms[0]['myinfo'];
+        // clickADD--pop
+        eventHander.addHandler(addlist, 'click', function () {
+            srtform.style.display = 'block';
+        })
+        // form-btn
+        eventHander.addHandler(formbtn, 'click', function (e) {
+            e = eventHander.getEvent(e);
+            target = eventHander.getTarget(e);
+            var btntype = target.getAttribute('class');
+            if (btntype.includes('btn-save') && !id) { // new
+                var app = {
+                    url: '/api/mySrt',
+                    method: 'POST',
+                    data: {
+                        title: title.value,
+                        bzinfo: bzinfo.value,
+                        myinfo: myinfo.value
                     }
-                    eventHander.XHRequest(app,function(data){
-                        if(data.rcode != "000000"){
-                            return;
-                        }
-                    })
                 }
-                srtform.style.display = 'none';
-                title.value='';
-                bzinfo.value='';
-                myinfo.value='';
-            })            
-            // list-btn
-            eventHander.addHandler(srtlist,'click',function(e){
-                e = eventHander.getEvent(e);
-                target = eventHander.getTarget(e);
-                console.log(target.querySelector('.modify'));
-            })
+                eventHander.XHRequest(app, function (result) {
+                    if (result.rcode != "000000") {
+                        return;
+                    } else {
+                        console.log(result);
+                        var data = result.data;
+                        var newli = document.createElement('li');
+                        newli.className = 'srt-item';
+                        newli.dataset.id = data.id;
+                        newli.dataset.tit = data.title;
+                        newli.dataset.binfo = data.bzinfo;
+                        newli.dataset.minfo = data.myinfo;
+                        var text = `<div class="title">
+                                ${ data.title }
+                                <a href="javascript:void(0);" class="modify">MODIFY</a>
+                                <a href="javascript:void(0);" class="delete">DELETED</a>
+                            </div>
+                            <div class="info">
+                                ${ data.bzinfo }
+                            </div>
+                            <div class="myinfo">
+                                ${ data.myinfo }
+                            </div>`;
+                        newli.innerHTML=text;
+                        srtlist.appendChild(newli);
+                    }
+                })
+            } else if (btntype.includes('btn-save') && id) { // modify
+                var app = {
+                    url: '/api/mySrt',
+                    method: 'POST',
+                    data: {
+                        id: id.value,
+                        title: title.value,
+                        bzinfo: bzinfo.value,
+                        myinfo: myinfo.value
+                    }
+                }
+                eventHander.XHRequest(app, function (data) {
+                    if (data.rcode != "000000") {
+                        return;
+                    } else {
+                        var modili = document.getElementsByClassName('modifyForm')[0];
+                        modili
+                    }
+                })
+            }
+            srtform.style.display = 'none';
+            id.value = '';
+            title.value = '';
+            bzinfo.value = '';
+            myinfo.value = '';
+        })
+        // list-btn
+        eventHander.addHandler(srtlist, 'click', function (e) {
+            e = eventHander.getEvent(e);
+            target = eventHander.getTarget(e);
+            var pnode = target;
+            if (pnode.nodeName.toLowerCase() != 'a') {
+                return;
+            }
+            while (pnode.nodeName.toLowerCase() != 'li') {
+                pnode = pnode.parentNode;
+            }
+            if (target.className.indexOf('modify') != -1) {
+                pnode.classList.push('modifyForm');
+                id.value = pnode.dataset.id;
+                title.value = pnode.dataset.tit;
+                bzinfo.value = pnode.dataset.binfo;
+                myinfo.value = pnode.dataset.minfo;
+                srtform.style.display = 'block';
+            } else if (target.className.indexOf('delete') != -1) {
+                var app = {
+                    url: '/api/delSrt',
+                    method: 'GET',
+                    data: {
+                        id: pnode.dataset.id
+                    }
+                }
+                eventHander.XHRequest(app, function (data) {
+                    if (data.rcode != "000000") {
+                        return;
+                    } else {
+                        console.log(data);
+                        srtlist.removeChild(pnode);
+                    }
+                })
+
+            }
+        })
         // #endregion
+    }
+    function reloadinfo () {
+        defineProperty
     }
 })

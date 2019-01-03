@@ -9,28 +9,28 @@
         <div class="showmodel">
             <div class="button-container-1">
                 <span class="mas">MINE</span>
-                <button type="button" data="mine">MINE</button>
+                <button type="button" data-class="mine">MINE</button>
             </div>
 
             <div class="button-container-2">
                 <span class="mas">STANDARD</span>
-                <button type="button" data="standard">STANDARD</button>
+                <button type="button" data-class="standard">STANDARD</button>
             </div>
 
             <div class="button-container-3">
                 <span class="mas">bOthem</span>
-                <button type="button" data="bothem">bOthem</button>
+                <button type="button" data-class="all">bOthem</button>
             </div>
         </div>
     </div>
     <ul class="srt-list">
         <% for(var d=0,dl=data.length;d < dl;d++){ %>
         <% var item = data[d]; %>
-        <li class="srt-item">
+        <li class="srt-item" data-id="<%= item.id %>" data-tit="<%= item.title %>" data-binfo="<%= item.bzinfo %>" data-minfo="<%= item.myinfo %>">
             <div class="title">
                 <%= item.title %>
-                <span class="modify">MODIFY</span>
-                <span class="delete">DELETED</span>
+                <a href="javascript:void(0);" class="modify">MODIFY</a>
+                <a href="javascript:void(0);" class="delete">DELETED</a>
             </div>
             <% if(item.bzinfo){%>
                 <div class="info">
@@ -49,6 +49,7 @@
         <div class="pop-main">
             <div class="pop-title">let's GO</div>
             <form class="data-form">
+                <input type = "hidden" name="id"/>
                 <div class="form-group" name="formdata">
                     <div class="form-label label2">标题</div>
                     <div class="form-ipt"><input type="text" name="title" /></div>
@@ -62,6 +63,7 @@
                     <div class="form-ipt"><textarea name="myinfo"></textarea></div>
                 </div>
                 <div class="form-button">
+                    
                     <div class="form-btn btn-cancel" id="">取消</div>
                     <div class="form-btn btn-save">保存</div>
                 </div>

@@ -209,23 +209,27 @@
 
 .srt-list {
     .srt-item {
-        height: 40px;
+        line-height: 40px;
     }
 
     .title {
         height: 40px;
         line-height: 40px;
         // @include elipsis();
+        a{
+            color:#333;
+            margin-left:10px;
+        }
     }
 
     .info,
-    .minfo {
+    .myinfo {
         display: none;
     }
 
     &.showmine {
         
-        .minfo {
+        .myinfo {
             display: block;
         }
     }
@@ -239,7 +243,7 @@
     &.showall {
 
         .info,
-        .minfo {
+        .myinfo {
             display: block;
         }
     }

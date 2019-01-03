@@ -20,23 +20,55 @@ const strModels = {
             }
         })
     },
-    addTi(req,success,fail){
+    mySrt(req,success,fail){
         var postdata = req.body;
-        console.log(postdata)
         var api = {
             url:'./src/public/assets/app/srt/srt-ti.json',
-            title:'添加菜单',
-            name:'add_menu',
+            title:'菜单操作',
+            name:'mySrt',
             data:postdata
         }
-        jAPI.addJSON(api,(result)=>{
+        if(postdata.id){
+            jAPI.changeJSON(api,(result)=>{
+                if(success && typeof success ==='function'){
+                    console.log('add success data!')
+                    success(result);
+                }
+            },(result)=>{
+                if(fail && typeof fail ==='function'){
+                    console.log('add data but return something wrong!')
+                    fail(result);
+                }
+            })
+        }else{
+            postdata.id = new Date().getTime();
+            jAPI.addJSON(api,(result)=>{
+                if(success && typeof success ==='function'){
+                    console.log('add success data!')
+                    success(result);
+                }
+            },(result)=>{
+                if(fail && typeof fail ==='function'){
+                    console.log('add data but return something wrong!')
+                    fail(result);
+                }
+            })
+        }
+    },
+    delSrt(req,success,fail){
+        var postdata = req.query;
+        var api = {
+            url:'./src/public/assets/app/srt/srt-ti.json',
+            title:'菜单操作',
+            name:'delSrt',
+            data:postdata
+        }
+        jAPI.deleteJSON(api,(result)=>{
             if(success && typeof success ==='function'){
-                console.log('add success data!')
                 success(result);
             }
         },(result)=>{
             if(fail && typeof fail ==='function'){
-                console.log('add data but return something wrong!')
                 fail(result);
             }
         })

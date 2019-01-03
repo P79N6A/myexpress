@@ -18,7 +18,8 @@ router.route('/api/addNav').post(NavController.addMenu);
 // interview json
 router.get('/srt',SrtController.init);
 
-router.post('/api/addTi',SrtController.addTi);
+router.post('/api/mySrt',SrtController.mySrt); //新增、修改
+router.get('/api/delSrt',SrtController.delSrt); // 删除
 
 // router.get('/', db.test);
 // 拦截器

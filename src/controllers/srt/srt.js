@@ -8,8 +8,16 @@ const srtController = {
             console.log("请求出错啦");
         })      
     },
-    addTi(req,res){
-        srtMondel.addTi(req,(result)=>{
+    mySrt(req,res){
+        srtMondel.mySrt(req,(result)=>{
+            res.json(result);
+        },(result)=>{
+            res.json(result);
+        })
+        
+    },
+    delSrt(req,res){
+        srtMondel.delSrt(req,(result)=>{
             res.json(result);
         },(result)=>{
             res.json(result);
