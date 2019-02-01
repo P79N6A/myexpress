@@ -20,28 +20,26 @@ const strModels = {
             }
         })
     },
-    mySrt(req,success,fail){
-        var postdata = req.body;
+    mySrt(params,success,fail){
         var api = {
             url:'./src/public/assets/app/srt/srt-ti.json',
             title:'菜单操作',
             name:'mySrt',
-            data:postdata
+            data:params
         }
-        if(postdata.id){
+        if(params.id){
             jAPI.changeJSON(api,(result)=>{
                 if(success && typeof success ==='function'){
-                    console.log('add success data!')
+                    console.log('modify success data!')
                     success(result);
                 }
             },(result)=>{
                 if(fail && typeof fail ==='function'){
-                    console.log('add data but return something wrong!')
+                    console.log('modify data but return something wrong!')
                     fail(result);
                 }
             })
         }else{
-            postdata.id = new Date().getTime();
             jAPI.addJSON(api,(result)=>{
                 if(success && typeof success ==='function'){
                     console.log('add success data!')
@@ -55,13 +53,12 @@ const strModels = {
             })
         }
     },
-    delSrt(req,success,fail){
-        var postdata = req.query;
+    delSrt(params,success,fail){
         var api = {
             url:'./src/public/assets/app/srt/srt-ti.json',
             title:'菜单操作',
             name:'delSrt',
-            data:postdata
+            data:params
         }
         jAPI.deleteJSON(api,(result)=>{
             if(success && typeof success ==='function'){

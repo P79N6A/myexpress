@@ -25,24 +25,50 @@
     </div>
     <ul class="srt-list">
         <% for(var d=0,dl=data.length;d < dl;d++){ %>
-        <% var item = data[d]; %>
-        <li class="srt-item" data-id="<%= item.id %>" data-tit="<%= item.title %>" data-binfo="<%= item.bzinfo %>" data-minfo="<%= item.myinfo %>">
-            <div class="title">
-                <%= item.title %>
-                <a href="javascript:void(0);" class="modify">MODIFY</a>
-                <a href="javascript:void(0);" class="delete">DELETED</a>
-            </div>
-            <% if(item.bzinfo){%>
-                <div class="info">
-                    <%= item.bzinfo %>
+            <% var item = data[d]; %>
+            <li class="srt-item" data-id="<%= item.id %>" data-tit="<%= item.title %>" data-bzinfo="<%= item.bzinfo %>" data-minfo="<%= item.myinfo %>">
+                <div class="title">
+                    <%= item.title %>
+                    <a href="javascript:void(0);" class="addchild">ADD</a>
+                    <!-- <a href="javascript:void(0);" class="modify">MODIFY</a> -->
+                    <a href="javascript:void(0);" class="delete">DELETED</a>
                 </div>
-            <% } %>
-            <% if(item.myinfo){%>
-                <div class="myinfo">
-                    <%= item.myinfo %>
-                </div>
-            <% } %>
-        </li>
+                <% if(item.bzinfo){%>
+                    <div class="info">
+                        <%= item.bzinfo %>
+                    </div>
+                <% } %>
+                <% if(item.myinfo){%>
+                    <div class="myinfo">
+                        <%= item.myinfo %>
+                    </div>
+                <% } %>
+                <% if(item.children){%>
+                    <ul class="crt-list">
+                        <% for(var c=0,cl=item.children.length;c < cl;c++){ %>
+                            <% var citem = item.children[c]; %>
+                            <li class="srt-item" data-id="<%= citem.id %>" data-tit="<%= citem.title %>" data-bzinfo="<%= citem.bzinfo %>" data-minfo="<%= citem.myinfo %>">
+                                <div class="title">
+                                    <%= citem.title %>
+                                    <!-- <a href="javascript:void(0);" class="modify">MODIFY</a> -->
+                                    <a href="javascript:void(0);" class="delete">DELETED</a>
+                                </div>
+                                <% if(citem.bzinfo){%>
+                                    <div class="info">
+                                        <%= citem.bzinfo %>
+                                    </div>
+                                <% } %>
+                                <% if(citem.myinfo){%>
+                                    <div class="myinfo">
+                                        <%= citem.myinfo %>
+                                    </div>
+                                <% } %>
+                            </li>
+                        <% } %>
+                    </ul>
+                <% } %>
+
+            </li>
         <% } %>
     </ul>
     <div class="pop-win" id="srtform">
@@ -50,6 +76,7 @@
             <div class="pop-title">let's GO</div>
             <form class="data-form">
                 <input type = "hidden" name="id"/>
+                <input type = "hidden" name="pid"/>
                 <div class="form-group" name="formdata">
                     <div class="form-label label2">标题</div>
                     <div class="form-ipt"><input type="text" name="title" /></div>

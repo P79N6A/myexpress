@@ -207,7 +207,7 @@
 
 }
 
-.srt-list {
+.srt-list,.crt-list {
     .srt-item {
         line-height: 40px;
     }
@@ -219,6 +219,15 @@
         a{
             color:#333;
             margin-left:10px;
+            text-decoration: none;
+            padding:2px 6px 3px;
+            border:1px solid #666;
+            border-bottom: 3px solid #666;
+            border-radius:5px;
+            &:hover{
+                border-bottom: 2px solid #666;
+                box-shadow: 0px 1px 4px #000;
+            }
         }
     }
 
@@ -247,6 +256,9 @@
             display: block;
         }
     }
+}
+.crt-list{
+    padding-left:20px;
 }
 
 .pop-win {

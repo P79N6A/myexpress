@@ -21,8 +21,20 @@ jAPI = {
             if (!person.data) {
                 person.data = [];
             }
-            person.data.push(params.data); //将传来的对象push进数组对象中
-            person.total = person.data.length; //定义一下总条数，为以后的分页打基础
+            // 添加ID
+            params.data.id = new Date().getTime();
+            if(params.data.pid){// 添加子节点
+                for (var i = 0; i < person.data.length; i++) {
+                    if (params.data.pid == person.data[i].id) {
+                        console.log('id一样的');
+                        person.data[i].children&& person.data[i].children instanceof Array?person.data[i].children.push(params.data):person.data[i].children=[params.data];
+                    }
+                }
+
+            }else{// 添加父节点
+                person.data.push(params.data); //将传来的对象push进数组对象中
+                person.total = person.data.length; //定义一下总条数，为以后的分页打基础
+            }
 
             var str = JSON.stringify(person); //因为nodejs的写入文件只认识字符串或者二进制数，所以把json对象转换成字符串重新写入json文件中
             fs.writeFile(params.url, str, function (err) {
@@ -58,7 +70,7 @@ jAPI = {
                 if (mdata.id == person.data[i].id) {
                     console.log('id一样的');
                     for (var key in mdata) {
-                        if (person.data[i][key]) {
+                        if (person.data[i][key]||person.data[i][key]==="") {
                             person.data[i][key] = mdata[key];
                         }
                     }

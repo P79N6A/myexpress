@@ -1,0 +1,15 @@
+<%- include('../common/header.ejs',{
+    title:'static-canvas',
+    styles:['bserline']
+})%>
+<div class="">
+    <h1>welcome my bserline </h1>
+    <canvas id="canvas" width="800" height="600"></canvas> 
+    <button type="button" id="print" class="btn btn-primary">绘制</button>
+    <button type="button" id="clear" class="btn btn-primary">清空</button>
+</div>
+<%- include("../common/footer.ejs",{
+    javascripts:[
+        "bserline"
+    ]
+}) %>

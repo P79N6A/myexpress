@@ -9,7 +9,8 @@ const srtController = {
         })      
     },
     mySrt(req,res){
-        srtMondel.mySrt(req,(result)=>{
+        var params = req.body;
+        srtMondel.mySrt(params,(result)=>{
             res.json(result);
         },(result)=>{
             res.json(result);
@@ -17,7 +18,8 @@ const srtController = {
         
     },
     delSrt(req,res){
-        srtMondel.delSrt(req,(result)=>{
+        var params = req.query;
+        srtMondel.delSrt(params,(result)=>{
             res.json(result);
         },(result)=>{
             res.json(result);

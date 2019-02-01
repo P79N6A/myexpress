@@ -51,6 +51,7 @@ define(function () {
         let srtform = document.getElementById('srtform');
         let formbtn = srtform.querySelector('.form-button');
         var id = document.forms[0]['id'];
+        var pid = document.forms[0]['pid'];
         var title = document.forms[0]['title'];
         var bzinfo = document.forms[0]['bzinfo'];
         var myinfo = document.forms[0]['myinfo'];
@@ -63,15 +64,19 @@ define(function () {
             e = eventHander.getEvent(e);
             target = eventHander.getTarget(e);
             var btntype = target.getAttribute('class');
-            if (btntype.includes('btn-save') && !id) { // new
+            if (btntype.includes('btn-save') && !id.value) { // new
+                var data = {
+                    title: title.value,
+                    bzinfo: bzinfo.value,
+                    myinfo: myinfo.value
+                };
+                if (pid.value) {
+                    data.pid = pid.value;
+                }
                 var app = {
                     url: '/api/mySrt',
                     method: 'POST',
-                    data: {
-                        title: title.value,
-                        bzinfo: bzinfo.value,
-                        myinfo: myinfo.value
-                    }
+                    data: data
                 }
                 eventHander.XHRequest(app, function (result) {
                     if (result.rcode != "000000") {
@@ -83,10 +88,11 @@ define(function () {
                         newli.className = 'srt-item';
                         newli.dataset.id = data.id;
                         newli.dataset.tit = data.title;
-                        newli.dataset.binfo = data.bzinfo;
+                        newli.dataset.bzinfo = data.bzinfo;
                         newli.dataset.minfo = data.myinfo;
                         var text = `<div class="title">
                                 ${ data.title }
+                                <a href="javascript:void(0);" class="addchild">ADD</a>
                                 <a href="javascript:void(0);" class="modify">MODIFY</a>
                                 <a href="javascript:void(0);" class="delete">DELETED</a>
                             </div>
@@ -96,11 +102,16 @@ define(function () {
                             <div class="myinfo">
                                 ${ data.myinfo }
                             </div>`;
-                        newli.innerHTML=text;
-                        srtlist.appendChild(newli);
+                        newli.innerHTML = text;
+
+                        if (pid) {
+                            window.location.href = window.location.href;
+                        } else {
+                            srtlist.appendChild(newli);
+                        }
                     }
                 })
-            } else if (btntype.includes('btn-save') && id) { // modify
+            } else if (btntype.includes('btn-save') && id.value) { // modify
                 var app = {
                     url: '/api/mySrt',
                     method: 'POST',
@@ -122,6 +133,7 @@ define(function () {
             }
             srtform.style.display = 'none';
             id.value = '';
+            pid.value = '';
             title.value = '';
             bzinfo.value = '';
             myinfo.value = '';
@@ -137,14 +149,18 @@ define(function () {
             while (pnode.nodeName.toLowerCase() != 'li') {
                 pnode = pnode.parentNode;
             }
-            if (target.className.indexOf('modify') != -1) {
-                pnode.classList.push('modifyForm');
+            if (target.className.indexOf('addchild') != -1) { // 添加子节点
+                pid.value = pnode.dataset.id;
+                srtform.style.display = 'block';
+
+            } else if (target.className.indexOf('modify') != -1) { // 修改list
+                pnode.classList.add('modifyForm');
                 id.value = pnode.dataset.id;
                 title.value = pnode.dataset.tit;
-                bzinfo.value = pnode.dataset.binfo;
+                bzinfo.value = pnode.dataset.bzinfo;
                 myinfo.value = pnode.dataset.minfo;
                 srtform.style.display = 'block';
-            } else if (target.className.indexOf('delete') != -1) {
+            } else if (target.className.indexOf('delete') != -1) { // 删除list
                 var app = {
                     url: '/api/delSrt',
                     method: 'GET',
@@ -165,7 +181,8 @@ define(function () {
         })
         // #endregion
     }
-    function reloadinfo () {
+
+    function reloadinfo() {
         defineProperty
     }
 })
