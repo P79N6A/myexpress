@@ -5,6 +5,7 @@ var router = express.Router();
 var IndexController = require('../controllers/index/index');
 var NavController = require('../controllers/nav/nav');
 var SrtController = require('../controllers/srt/srt');
+const ViewStatic = require('../controllers/static/static');
 
 /* GET home page. */
 //首页
@@ -20,6 +21,9 @@ router.get('/srt',SrtController.init);
 
 router.post('/api/mySrt',SrtController.mySrt); //新增、修改
 router.get('/api/delSrt',SrtController.delSrt); // 删除
+
+router.get('/api/book',ViewStatic.initBook);  //static voice
+router.post('/voice/clientVoice',ViewStatic.clientVoice);  //static voice
 
 // router.get('/', db.test);
 // 拦截器

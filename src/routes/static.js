@@ -7,5 +7,6 @@ router.get('/canvas',ViewStatic.canvas);
 router.get('/three',ViewStatic.three);
 router.get('/bserline',ViewStatic.bserline);
 router.get('/linechar',ViewStatic.linechar);
+router.get('/voice',ViewStatic.voice);
 
 module.exports = router;

@@ -3,7 +3,7 @@ var jAPI = require('../common/json');
 const strModels = {
     init(req,success,fail){
         var api ={
-            url: './src/public/assets/app/srt/srt-ti.json',
+            url: './src/public/assets/data/srt-ti.json',
             title:'查询',
             name:'初始化',
             data:req.body
@@ -22,7 +22,7 @@ const strModels = {
     },
     mySrt(params,success,fail){
         var api = {
-            url:'./src/public/assets/app/srt/srt-ti.json',
+            url:'./src/public/assets/data/srt-ti.json',
             title:'菜单操作',
             name:'mySrt',
             data:params
@@ -55,7 +55,7 @@ const strModels = {
     },
     delSrt(params,success,fail){
         var api = {
-            url:'./src/public/assets/app/srt/srt-ti.json',
+            url:'./src/public/assets/data/srt-ti.json',
             title:'菜单操作',
             name:'delSrt',
             data:params

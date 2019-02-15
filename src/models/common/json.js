@@ -152,6 +152,22 @@ jAPI = {
             console.log('------------------------查询成功pagePerson');
             console.log(pagePerson);
         })
+    },
+    // 详情查询
+    bookInfo:(params, success, error) => {
+        fs.readFile(params.url, function (err, data) {
+            if (err) {
+                error(err);
+                return;
+            }
+            var returnData = {
+                rcode:'000000',
+                msg:'成功',
+                data:data.toString()
+            }
+            success(returnData);
+            console.log('------------------------查询成功 bookInfo');
+        });
     }
 };
 // pagination(0,6);//查询第一页，每页的数据条数为6条

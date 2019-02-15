@@ -4,7 +4,7 @@
  * @Descrption: 'remember point' 
  */
 
-const eventHander = require('../../components/commin/common');
+const eventHander = require('../../components/common/common');
 define(function () {
     window.onload = () => {
         // battery 属性获取电量

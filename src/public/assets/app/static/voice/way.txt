@@ -1,0 +1,6 @@
+node实现：
+1.npm 安装  baidu-aip-sdk 实现  demo：sdk-demo kye:screen、app
+
+2. 暂未调试成功  demo：api-node-sdk-version
+
+2.html:http请求实现--直接使用kye:screen、app 获取token实现

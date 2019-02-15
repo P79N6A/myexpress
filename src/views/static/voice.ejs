@@ -1,0 +1,19 @@
+<%- include('../common/header.ejs',{
+    title:'baidu-AI-voice ',
+    styles:['voice']
+})%>
+<div class="">
+    <h1>voice</h1>
+    <button>ready go</button>
+    <div id="bdtts_div_id"></div>
+    
+    <h1>voice2</h1>
+    <div class="conversion_voice">clinetVoice</div>
+    <div id="client_voice"></div>
+</div>
+<%- include("../common/footer.ejs",{
+    javascripts:[
+        "voice"
+    ],
+    libs:[]
+}) %>

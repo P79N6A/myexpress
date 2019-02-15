@@ -1,0 +1,191 @@
+//////////////////////////////////////////////////////////////////////
+// 对话框
+//////////////////////////////////////////////////////////////////////
+.uploadLoading {
+    padding-left: 45px;
+    background: url('/img/loading-upload.gif') no-repeat left center;
+    background-size: 30px 30px;
+    height: 42px;
+    line-height: 42px;
+}
+
+.dialog-overlay {
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+}
+
+.dialog_box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    overflow: auto;
+    background-color: #fff;
+    border-radius: 3px;
+    #loading {
+        min-height: 64px;
+        display: inline-block;
+        padding-left: 64px;
+        background: url('/img/loading.gif') no-repeat left center;
+        background-size: 64px 64px;
+        >span {
+            display: table-cell;
+            vertical-align: middle;
+            height: 64px;
+            font-size: 18px;
+            color: #fff;
+            padding-left: 15px;
+        }
+        &.upload {
+            background-image: url('/img/loading-upload.gif');
+        }
+    }
+}
+
+.dialog-header {
+    position: relative;
+    height: 70px;
+    padding: 0 42px 0 20px;
+    line-height: 70px;
+    border-bottom: 1px solid $base_color;
+    background-color: $white;
+    .dialog-title {
+        display: block;
+        color: #333;
+        font-size: 22px;
+        @include ellipsis-single;
+    }
+    .dialog-close {
+        position: absolute;
+        top: 15px;
+        right: 7px;
+        display: block;
+        width: 40px;
+        height: 40px;
+        color: #333;
+        font-size: $fs18;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+        &:hover,
+        &:focus {
+            color: $base-color;
+            ;
+        }
+    }
+}
+
+.cf-diff-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 40px;
+    height: 40px;
+    color: $c6;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        color: $base-color;
+        ;
+    }
+}
+
+//询问 删除弹出框
+.confirm-layer {
+    width: 400px;
+    height: 200px;
+    text-align: center;
+    background-color: $white;
+    .confirm-text {
+        padding: 70px 0 38px 0;
+        line-height: 14px;
+        font-size: 14px;
+        color: $c3;
+    }
+    .operate-btn {
+        font-size: 0;
+        span {
+            display: inline-block;
+            width: 110px;
+            height: 44px;
+            line-height: 44px;
+            font-size: 14px;
+            border-radius: 25px;
+            &.add-sure {
+                color: $white;
+                &:hover {
+                    border-color: darken($base-color, 5%);
+                    background-color: darken($base-color, 5%);
+                }
+            }
+            &.add-cancel {
+                background-color: #f8f8f8;
+                color: $c6;
+            }
+        }
+    }
+}
+
+//提示层
+.text-tip-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 1;
+}
+
+.text-tip {
+    text-align: center;
+    line-height: 76px;
+    height: 76px;
+    font-size: 16px;
+    color: #fff;
+    background-color: $black;
+    filter: alpha(opacity=50);
+    background-color: rgba(0, 0, 0, .7);
+    min-width: 200px;
+    padding: 0 50px;
+    @include box-sizing;
+    border-radius: 50px;
+    a {
+        color: $base-color;
+        text-decoration: underline;
+    }
+    i{
+        margin-right: 12px;
+        color: #fff;
+        position: relative;
+        top: 1px;
+    }
+    span {
+        position: relative;
+    }
+}
+
+//成功提示
+.sucess-text-tip {
+    padding: 40px;
+    font-size: $fs16;
+    text-align: center;
+    .sure-btn {
+        display: block;
+        width: 120px;
+        height: 42px;
+        line-height: 42px;
+        text-align: center;
+        margin: 30px auto 0;
+        cursor: pointer;
+    }
+}

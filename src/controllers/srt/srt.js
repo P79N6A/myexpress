@@ -8,6 +8,9 @@ const srtController = {
             console.log("请求出错啦");
         })      
     },
+    point(req,res){
+        res.render('srt/pointdemo','');
+    },
     mySrt(req,res){
         var params = req.body;
         srtMondel.mySrt(params,(result)=>{

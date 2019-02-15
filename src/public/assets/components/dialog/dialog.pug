@@ -1,0 +1,11 @@
+div.dialog-overlay
+    div.dialog
+        div.dialog-header
+            span.dialog-title #{title}
+            i.dialog-close#J_DialogClose 关闭
+        div.dialog-body
+            if body
+                | #{body}
+        div.dialog-footer
+            if footer
+                | #{footer}

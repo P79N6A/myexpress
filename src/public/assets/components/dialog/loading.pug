@@ -1,0 +1,11 @@
+//- 各种loading展示
+
+
+
+case type
+    when 1: -var t='upload'
+    default: -var t='loading'
+    
+div(id='loading',class=t)
+    if showText
+        span #{text}

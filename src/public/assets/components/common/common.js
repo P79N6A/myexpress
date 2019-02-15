@@ -52,15 +52,16 @@ var EventUtil = {
     XHRequest: function (app, sn, en) { // 
         var xhr = new XMLHttpRequest(); // yi 创建对象
         var url = app.url;
-        var data = JSON.stringify(app.data).replace(/[\:]/g,'=').replace(/[\,]/g,'&').replace(/[\"\{\}]/g,'');
-        if (app.method.toLowerCase() != 'post') {
-            url += app.data ? '?' + data : '';
+        if (app.method.toLowerCase() != 'post' && app.data) {
+            var data = JSON.stringify(app.data).replace(/[\:]/g,'=').replace(/[\,]/g,'&').replace(/[\"\{\}]/g,'');
+            url += data;
         }
         xhr.open(app.method, url); // er 使用open方法设置和服务器的交互信息
         if (app.method.toLowerCase() === 'post') { // 为post请求添加请求头 避免报错            
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         }
         if (app.method.toLowerCase() === 'post' && app.data) { // san 开始发送数据 与服务端进行交互
+            var data = JSON.stringify(app.data).replace(/[\:]/g,'=').replace(/[\,]/g,'&').replace(/[\"\{\}]/g,'');
             xhr.send(data);
         } else {
             xhr.send();
